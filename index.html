@@ -226,7 +226,23 @@
             left: 0;
         }
 
-        .notes {
+        .weather-info {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            font-size: 0.95em;
+        }
+
+        .weather-info {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            font-size: 0.95em;
+        }
             background: #fff3cd;
             padding: 20px;
             margin-top: 30px;
@@ -301,13 +317,8 @@
                 <div class="day-content" id="saturday">
                     <div class="activity independent-time">
                         <div class="activity-time">Afternoon</div>
-                        <div class="activity-title">Arrive & Settle In</div>
-                        <div class="activity-description">Check into the spa resort and get oriented with your rooms and facilities.</div>
-                    </div>
-                    <div class="activity independent-time">
-                        <div class="activity-time">Late Afternoon</div>
                         <div class="activity-title">Downtown Stroll & Shopping</div>
-                        <div class="activity-description">Walk the vibrant harbor streets and browse local shops. Perfect for picking up books and getting your bearings!</div>
+                        <div class="activity-description">Walk the vibrant harbor streets and browse local shops before check-in. Perfect for picking up books and getting your bearings!</div>
                         <div class="shops-list">
                             <h4>Recommended Shops:</h4>
                             <ul>
@@ -317,6 +328,11 @@
                                 <li>Quilting: Fabric Centre in Owen Sound (30 min drive south) - 2000+ bolts of quilting cottons</li>
                             </ul>
                         </div>
+                    </div>
+                    <div class="activity independent-time">
+                        <div class="activity-time">Around 4:00pm</div>
+                        <div class="activity-title">Check-in & Settle</div>
+                        <div class="activity-description">Check into the spa resort and get oriented with your rooms and facilities.</div>
                     </div>
                     <div class="activity family-activity">
                         <div class="activity-time">Evening</div>
@@ -350,6 +366,9 @@
                         <div class="activity-time">Afternoon (1-2 hours)</div>
                         <div class="activity-title">Family Activity #1: Maritime Museum & Harbourfront</div>
                         <div class="activity-description">Visit the Tobermory Maritime Museum together and walk the beautiful harbourfront. Learn about the area's rich maritime history.</div>
+                        <div class="weather-info">
+                            <strong>🌤️ Weather:</strong> Partly cloudy, 77°F (25°C), light winds - perfect for walking!
+                        </div>
                     </div>
                     <div class="activity independent-time">
                         <div class="activity-time">Late Afternoon/Evening</div>
@@ -365,25 +384,26 @@
                     <span class="toggle-icon" id="icon-monday">▼</span>
                 </div>
                 <div class="day-content" id="monday">
-                    <div class="activity special-activity">
+                    <div class="activity family-activity">
                         <div class="activity-time">9:00am - 1:00pm</div>
-                        <div class="activity-title">The Grotto Hike (You)</div>
-                        <div class="activity-description">Your reserved parking time for the famous Grotto hike. Enjoy this stunning natural cave and crystal-clear waters!</div>
-                    </div>
-                    <div class="activity independent-time">
-                        <div class="activity-time">9:00am - 1:00pm</div>
-                        <div class="activity-title">Family Free Time</div>
-                        <div class="activity-description">While you're hiking, family can explore shops, visit Forty Hills Farms and Flowers, or enjoy spa facilities.</div>
+                        <div class="activity-title">Family Activity #2: The Grotto Hike</div>
+                        <div class="activity-description">Everyone hikes together to the famous Grotto! Experience this stunning natural cave and crystal-clear waters as a family. Reserved parking time ensures you can all enjoy this iconic Bruce Peninsula destination.</div>
+                        <div class="weather-info">
+                            <strong>🌤️ Weather:</strong> Partly cloudy, 77°F (25°C), possible stray shower - bring light rain jackets just in case!
+                        </div>
                     </div>
                     <div class="activity independent-time">
                         <div class="activity-time">Afternoon</div>
                         <div class="activity-title">Rest & Recovery</div>
-                        <div class="activity-description">Perfect time for spa facilities, reading, or just relaxing after the hike. Others can continue exploring independently.</div>
+                        <div class="activity-description">Perfect time for spa facilities, reading, or just relaxing after the family hike. Everyone can unwind however they prefer.</div>
                     </div>
                     <div class="activity family-activity">
                         <div class="activity-time">Evening</div>
-                        <div class="activity-title">Family Activity #2: Big Tub Harbour Sunset</div>
+                        <div class="activity-title">Family Activity #3: Big Tub Harbour Sunset</div>
                         <div class="activity-description">Watch the sunset together at Big Tub Harbour - a beautiful, peaceful spot that's not physically demanding after your hike.</div>
+                        <div class="weather-info">
+                            <strong>🌅 Weather:</strong> Clear evening, 65°F (18°C) - perfect for sunset viewing! Sunset at 8:58pm.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -394,20 +414,18 @@
                     <span class="toggle-icon" id="icon-tuesday">▼</span>
                 </div>
                 <div class="day-content" id="tuesday">
-                    <div class="activity special-activity">
+                    <div class="activity family-activity">
                         <div class="activity-time">9:30am - 3:00pm</div>
-                        <div class="activity-title">Flower Pot Island (You)</div>
-                        <div class="activity-description">Take the boat to explore this unique island with its famous rock formations. Another amazing Bruce Peninsula experience!</div>
-                    </div>
-                    <div class="activity independent-time">
-                        <div class="activity-time">9:30am - 3:00pm</div>
-                        <div class="activity-title">Family Free Time</div>
-                        <div class="activity-description">Family has the day to enjoy spa facilities, do any remaining shopping, or explore Tobermory at their own pace.</div>
+                        <div class="activity-title">Family Activity #4: Flower Pot Island</div>
+                        <div class="activity-description">The whole family takes the boat to explore this unique island with its famous rock formations. Another amazing Bruce Peninsula experience to share together!</div>
+                        <div class="weather-info">
+                            <strong>⛅ Weather:</strong> Partly cloudy, 76°F (24°C), light winds - ideal for boating and island exploring!
+                        </div>
                     </div>
                     <div class="activity independent-time">
                         <div class="activity-time">Evening</div>
                         <div class="activity-title">Independent Time</div>
-                        <div class="activity-description">Everyone can choose their own evening - you'll likely be tired from the boat trip and island exploring, so this gives maximum flexibility.</div>
+                        <div class="activity-description">Everyone can choose their own evening - the whole family will likely be tired from the boat trip and island exploring, so this gives maximum flexibility.</div>
                     </div>
                 </div>
             </div>
@@ -437,8 +455,8 @@
                     <li><strong>Spa Facilities:</strong> Perfect for independent time throughout the trip - people can drift in and out as they feel like it</li>
                     <li><strong>Books:</strong> Don't forget to bring your reading material! Reader's Haven Book Store is perfect for adding to your collection</li>
                     <li><strong>Weather:</strong> Check weather conditions for hiking days and pack accordingly</li>
-                    <li><strong>Food:</strong> Everyone is responsible for their own food and everyone will help with cleaning </li>
-                    <li><strong>Shopping:</strong> Most shops are walkable from the harbor area and are dog friendly </li>
+                    <li><strong>Food:</strong> Everyone is responsible for their own food and for helping with clean-up. It should be relaxed :) </li>
+                    <li><strong>Shopping:</strong> Most shops are walkable from the harbor area - perfect for casual browsing</li>
                 </ul>
             </div>
         </div>
