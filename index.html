@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tobermory Family Trip Itinerary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2E86AB 0%, #A23B72 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .trip-info {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .trip-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .detail-card h3 {
+            color: #2E86AB;
+            margin-bottom: 5px;
+        }
+
+        .group-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .itinerary {
+            padding: 30px;
+        }
+
+        .day-card {
+            background: white;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-header h2 {
+            font-size: 1.5em;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .day-content {
+            padding: 25px;
+            display: none;
+        }
+
+        .day-content.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+            }
+        }
+
+        .activity {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #2E86AB;
+            transition: all 0.3s ease;
+        }
+
+        .activity:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .activity-time {
+            font-weight: bold;
+            color: #2E86AB;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .activity-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .activity-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .family-activity {
+            border-left-color: #A23B72;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .family-activity .activity-time {
+            color: #A23B72;
+        }
+
+        .independent-time {
+            border-left-color: #28a745;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        }
+
+        .independent-time .activity-time {
+            color: #28a745;
+        }
+
+        .special-activity {
+            border-left-color: #fd7e14;
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        }
+
+        .special-activity .activity-time {
+            color: #fd7e14;
+        }
+
+        .shops-list {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .shops-list h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .shops-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .shops-list li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .shops-list li:before {
+            content: "🛍️";
+            position: absolute;
+            left: 0;
+        }
+
+        .notes {
+            background: #fff3cd;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            border: 1px solid #ffeaa7;
+        }
+
+        .notes h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .notes ul {
+            color: #856404;
+            padding-left: 20px;
+        }
+
+        .notes li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .trip-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏔️ Tobermory Family Trip</h1>
+            <p>Saturday - Wednesday • Bruce Peninsula Adventure</p>
+        </div>
+
+        <div class="trip-info">
+            <div class="trip-details">
+                <div class="detail-card">
+                    <h3>🏨 Accommodation</h3>
+                    <p>Spa Resort with Sauna, Hot Tub, Cold Plunge & Firepit</p>
+                </div>
+                <div class="detail-card">
+                    <h3>🥾 Grotto Hike</h3>
+                    <p>Monday 9am-1pm</p>
+                </div>
+                <div class="detail-card">
+                    <h3>🚢 Flower Pot Island</h3>
+                    <p>Tuesday 9:30am-3pm</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="itinerary">
+            <div class="day-card">
+                <div class="day-header" onclick="toggleDay('saturday')">
+                    <h2>📍 Saturday - Arrival Day</h2>
+                    <span class="toggle-icon" id="icon-saturday">▼</span>
+                </div>
+                <div class="day-content" id="saturday">
+                    <div class="activity independent-time">
+                        <div class="activity-time">Afternoon</div>
+                        <div class="activity-title">Arrive & Settle In</div>
+                        <div class="activity-description">Check into the spa resort and get oriented with your rooms and facilities.</div>
+                    </div>
+                    <div class="activity independent-time">
+                        <div class="activity-time">Late Afternoon</div>
+                        <div class="activity-title">Downtown Stroll & Shopping</div>
+                        <div class="activity-description">Walk the vibrant harbor streets and browse local shops. Perfect for picking up books and getting your bearings!</div>
+                        <div class="shops-list">
+                            <h4>Recommended Shops:</h4>
+                            <ul>
+                                <li>Reader's Haven Book Store (add to your reading collection!)</li>
+                                <li>Golden Gallery (local art)</li>
+                                <li>Blue Bay Jewelley and Lapidary</li>
+                                <li>Quilting: Fabric Centre in Owen Sound (30 min drive south) - 2000+ bolts of quilting cottons</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="activity family-activity">
+                        <div class="activity-time">Evening</div>
+                        <div class="activity-title">Family Dinner & Spa Introduction</div>
+                        <div class="activity-description">Enjoy dinner together and everyone can try the sauna, hot tub, and cold plunge as an ice-breaker activity.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header" onclick="toggleDay('sunday')">
+                    <h2>🌅 Sunday - Full Free Day</h2>
+                    <span class="toggle-icon" id="icon-sunday">▼</span>
+                </div>
+                <div class="day-content" id="sunday">
+                    <div class="activity independent-time">
+                        <div class="activity-time">Morning</div>
+                        <div class="activity-title">Split Time Options</div>
+                        <div class="activity-description">Choose your own adventure - explore more shops or relax at the spa.</div>
+                        <div class="shops-list">
+                            <h4>More Shopping Options:</h4>
+                            <ul>
+                                <li>The Shops at 84 Main</li>
+                                <li>Starry Nights Studio</li>
+                                <li>The Net Shed</li>
+                                <li>For Quilters: "The Quilt Place" in Owen Sound (since 1986) - relaxed quilting world with designer fabrics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="activity family-activity">
+                        <div class="activity-time">Afternoon (1-2 hours)</div>
+                        <div class="activity-title">Family Activity #1: Maritime Museum & Harbourfront</div>
+                        <div class="activity-description">Visit the Tobermory Maritime Museum together and walk the beautiful harbourfront. Learn about the area's rich maritime history.</div>
+                    </div>
+                    <div class="activity independent-time">
+                        <div class="activity-time">Late Afternoon/Evening</div>
+                        <div class="activity-title">Independent Time</div>
+                        <div class="activity-description">Perfect for reading, spa time, more shopping at Forty Hills Farms and Flowers, or just relaxing however you prefer.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header" onclick="toggleDay('monday')">
+                    <h2>🥾 Monday - Grotto Day</h2>
+                    <span class="toggle-icon" id="icon-monday">▼</span>
+                </div>
+                <div class="day-content" id="monday">
+                    <div class="activity special-activity">
+                        <div class="activity-time">9:00am - 1:00pm</div>
+                        <div class="activity-title">The Grotto Hike (You)</div>
+                        <div class="activity-description">Your reserved parking time for the famous Grotto hike. Enjoy this stunning natural cave and crystal-clear waters!</div>
+                    </div>
+                    <div class="activity independent-time">
+                        <div class="activity-time">9:00am - 1:00pm</div>
+                        <div class="activity-title">Family Free Time</div>
+                        <div class="activity-description">While you're hiking, family can explore shops, visit Forty Hills Farms and Flowers, or enjoy spa facilities.</div>
+                    </div>
+                    <div class="activity independent-time">
+                        <div class="activity-time">Afternoon</div>
+                        <div class="activity-title">Rest & Recovery</div>
+                        <div class="activity-description">Perfect time for spa facilities, reading, or just relaxing after the hike. Others can continue exploring independently.</div>
+                    </div>
+                    <div class="activity family-activity">
+                        <div class="activity-time">Evening</div>
+                        <div class="activity-title">Family Activity #2: Big Tub Harbour Sunset</div>
+                        <div class="activity-description">Watch the sunset together at Big Tub Harbour - a beautiful, peaceful spot that's not physically demanding after your hike.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header" onclick="toggleDay('tuesday')">
+                    <h2>🏝️ Tuesday - Flower Pot Island Day</h2>
+                    <span class="toggle-icon" id="icon-tuesday">▼</span>
+                </div>
+                <div class="day-content" id="tuesday">
+                    <div class="activity special-activity">
+                        <div class="activity-time">9:30am - 3:00pm</div>
+                        <div class="activity-title">Flower Pot Island (You)</div>
+                        <div class="activity-description">Take the boat to explore this unique island with its famous rock formations. Another amazing Bruce Peninsula experience!</div>
+                    </div>
+                    <div class="activity independent-time">
+                        <div class="activity-time">9:30am - 3:00pm</div>
+                        <div class="activity-title">Family Free Time</div>
+                        <div class="activity-description">Family has the day to enjoy spa facilities, do any remaining shopping, or explore Tobermory at their own pace.</div>
+                    </div>
+                    <div class="activity independent-time">
+                        <div class="activity-time">Evening</div>
+                        <div class="activity-title">Independent Time</div>
+                        <div class="activity-description">Everyone can choose their own evening - you'll likely be tired from the boat trip and island exploring, so this gives maximum flexibility.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header" onclick="toggleDay('wednesday')">
+                    <h2>👋 Wednesday - Departure</h2>
+                    <span class="toggle-icon" id="icon-wednesday">▼</span>
+                </div>
+                <div class="day-content" id="wednesday">
+                    <div class="activity independent-time">
+                        <div class="activity-time">Morning</div>
+                        <div class="activity-title">Final Shopping & Spa Time</div>
+                        <div class="activity-description">Last chance for souvenirs and one final session in the sauna, hot tub, or cold plunge before packing up.</div>
+                    </div>
+                    <div class="activity family-activity">
+                        <div class="activity-time">Late Morning</div>
+                        <div class="activity-title">Checkout & Departure</div>
+                        <div class="activity-description">Pack up and head home with amazing memories of your Bruce Peninsula adventure!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes">
+                <h3>📝 Important Notes</h3>
+                <ul>
+                    <li><strong>Spa Facilities:</strong> Perfect for independent time throughout the trip - people can drift in and out as they feel like it</li>
+                    <li><strong>Books:</strong> Don't forget to bring your reading material! Reader's Haven Book Store is perfect for adding to your collection</li>
+                    <li><strong>Weather:</strong> Check weather conditions for hiking days and pack accordingly</li>
+                    <li><strong>Flexibility:</strong> This itinerary balances planned family activities with plenty of independent time for everyone's preferences</li>
+                    <li><strong>Shopping:</strong> Most shops are walkable from the harbor area - perfect for casual browsing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDay(dayId) {
+            const content = document.getElementById(dayId);
+            const icon = document.getElementById('icon-' + dayId);
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+                icon.textContent = '▼';
+            } else {
+                content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+                icon.textContent = '▲';
+            }
+        }
+
+        // Initialize with first day open
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleDay('saturday');
+        });
+    </script>
+</body>
+</html>
